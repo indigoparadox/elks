@@ -93,6 +93,8 @@ CONFIG_APP_NANOX		nano-X/			Nano-X Graphical Window System v0.86 from 1999.
 										Builds but doesn't install: demo, demo2, nclock
 										Doesn't build: nterm, world
 
+CONFIG_APP_TINYGL    TinyGL/        TinyGL
+
 CONFIG_APP_OTHER		bc/				Calculator
 
 CONFIG_APP_OTHER		mtools/			Early MSDOS mtools v1.6.2 from 1989, with man pages.

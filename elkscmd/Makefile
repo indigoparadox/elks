@@ -33,6 +33,7 @@ SUBDIRS =       \
 	minix3      \
 	misc_utils  \
 	nano-X      \
+   TinyGL      \
 	sash        \
 	screen      \
 	cron        \
