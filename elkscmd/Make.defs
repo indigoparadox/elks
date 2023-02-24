@@ -68,11 +68,11 @@ HOSTCFLAGS = -O3
 #
 # Compiler variables for programs cross-compiled for ELKS.
 
-CC=ia16-elf-gcc
+CC=$(TOPDIR)/cross/bin/ia16-elf-gcc
 CFLBASE=-fno-inline -melks-libc -mcmodel=small -mno-segment-relocation-stuff -mtune=i8086 -Wall -Os
 #CFLBASE += -mregparmcall
 #CFLBASE += -finstrument-functions-simple
-LD=ia16-elf-gcc
+LD=$(TOPDIR)/cross/bin/ia16-elf-gcc
 LDFLAGS=$(CFLBASE)
 CHECK=gcc -c -o .null.o -Wall -pedantic
 AS=ia16-elf-as

@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define MWINCLUDECOLORS
-#include <microwin/nano-X.h>
+#include <nano-X.h>
 #include <GL/gl.h> 
 #include <GL/nglx.h> 
 #include "ui.h"
@@ -24,7 +24,7 @@ int
 ui_loop(int argc,char **argv, const char *name)
 {
 	GR_EVENT	event;		/* current event */
-	GR_IMAGE_ID	id = 0;
+	GR_DRAW_ID	id = 0;
         NGLXContext cx;
         int width, height, k;
 
@@ -40,7 +40,7 @@ ui_loop(int argc,char **argv, const char *name)
 
 	w1 = GrNewWindow(GR_ROOT_WINDOW_ID, 10, 10, width, height, 4, BLACK, WHITE);
 
-	GrSelectEvents(w1, GR_EVENT_MASK_CLOSE_REQ|GR_EVENT_MASK_EXPOSURE|GR_EVENT_MASK_KEY_DOWN);
+	GrSelectEvents(w1, GR_EVENT_MASK_EXPOSURE|GR_EVENT_MASK_KEY_DOWN);
 
 	GrMapWindow(w1);
 
@@ -57,10 +57,13 @@ ui_loop(int argc,char **argv, const char *name)
 	while (1) {
             GrCheckNextEvent(&event);
             switch(event.type) {
+            /*
+            XXX
             case GR_EVENT_TYPE_CLOSE_REQ:
                 GrFreeImage(id);
                 GrClose();
                 exit(0);
+            */
             case GR_EVENT_TYPE_EXPOSURE:
                 break;
             case GR_EVENT_TYPE_KEY_DOWN:

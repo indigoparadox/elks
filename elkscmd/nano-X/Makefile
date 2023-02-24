@@ -3,6 +3,10 @@
 # originally from v0.86 10/29/99 g haerr
 #
 
+ifeq ("$(TOPDIR)","")
+   TOPDIR=$(HOME)/Projects/elks
+endif
+
 BASEDIR = ..
 include $(BASEDIR)/Make.defs
 
@@ -62,7 +66,7 @@ STUBFILES = nanox/stubs.o
 ifdef LINK_APP_INTO_SERVER
 CFLAGS += -DNONETWORK=1
 NANOXFILES += $(STUBFILES)
-ALL += salibs $(NANOXDEMOS)
+ALL += salibs $(NANOXDEMOS) libnano-X.a
 else
 NANOXFILES += $(NETFILES)
 DEMOLIBS += libnano-X.a
@@ -79,8 +83,8 @@ SERVFILES += $(DRIVERS)
 
 all: $(ALL)
 
-libnano-X.a: $(CLNTFILES)
-	$(AR) rc libnano-X.a $(CLNTFILES)
+libnano-X.a: $(SERVFILES)
+	$(AR) rc libnano-X.a $(NANOXFILES) $(SERVFILES)
 
 salibs: $(SERVFILES) $(NANOXFILES)
 

@@ -1,6 +1,7 @@
 include ../config.mk
 
-PROGS = mech texobj gears spin
+#PROGS = mech texobj gears spin
+PROGS = gears
 
 all: $(PROGS)
 
@@ -14,7 +15,8 @@ texobj: texobj.o $(UI_OBJS) $(GL_DEPS)
 	$(CC) $(LFLAGS) $^ -o $@ $(GL_LIBS) $(UI_LIBS) -lm
 
 gears: gears.o $(UI_OBJS) $(GL_DEPS)
-	$(CC) $(LFLAGS) $^ -o $@ $(GL_LIBS) $(UI_LIBS) -lm
+	$(CC) $(LFLAGS) $^ -o $@ $(GL_LIBS) $(UI_LIBS)
+#-lm
 
 spin: spin.o $(UI_OBJS) $(GL_DEPS)
 	$(CC) $(LFLAGS) $^ -o $@ $(GL_LIBS) $(UI_LIBS) -lm

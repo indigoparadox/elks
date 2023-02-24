@@ -5,10 +5,16 @@ ifeq ("$(TOPDIR)","")
    TOPDIR=$(HOME)/Projects/elks
 endif
 
+BASEDIR = $(TOPDIR)/elkscmd
+include $(BASEDIR)/Make.defs
+
+CFLAGS += -I$(TOPDIR)/elkscmd/nano-X
+LFLAGS := $(LDFLAGS)
+
 # ELKS
-CC=ia16-elf-gcc
-CFLAGS=-fno-inline -melks-libc -mcmodel=small -mno-segment-relocation-stuff -mtune=i8086 -Wall -Os -Wno-implicit-int -Wno-parentheses  -I$(TOPDIR)/include -I$(TOPDIR)/libc/include -I$(TOPDIR)/elks/include -D__ELKS__ -DELKS_VERSION=\"0.6.0\" -I$(TOPDIR)/elkscmd/nano-X
-LFLAGS=-fno-inline -melks-libc -mcmodel=small -mno-segment-relocation-stuff -mtune=i8086 -Wall -Os 
+#CC=$(TOPDIR)/cross/bin/ia16-elf-gcc
+#CFLAGS=-fno-inline -melks-libc -mcmodel=small -mno-segment-relocation-stuff -mtune=i8086 -Wall -Os -Wno-implicit-int -Wno-parentheses  -I$(TOPDIR)/include -I$(TOPDIR)/libc/include -I$(TOPDIR)/elks/include -D__ELKS__ -DELKS_VERSION=\"0.6.0\" -I$(TOPDIR)/elkscmd/nano-X
+#LFLAGS=-fno-inline -melks-libc -mcmodel=small -mno-segment-relocation-stuff -mtune=i8086 -Wall -Os 
 
 # linux
 #CC= gcc
@@ -53,13 +59,14 @@ endif
 # Micro windowX11 configuration (for the examples only)
 
 ifdef TINYGL_USE_NANOX
-UI_LIBS= -lnano-X -lmwengine -lmwdrivers -lmwfonts
+UI_LIBS= -L$(TOPDIR)/elkscmd/nano-X -lnano-X
+#-lmwengine -lmwdrivers -lmwfonts
 UI_INCLUDES=
 
 # X11 target for nanoX
-UI_LIBS+= -L/usr/X11R6/lib -lX11 -lXext
+#UI_LIBS+= -L/usr/X11R6/lib -lX11 -lXext
 
-UI_OBJS=nanox.o
+UI_OBJS=nanox.o 
 endif
 
 #####################################################################
@@ -68,7 +75,7 @@ endif
 # use TinyGL 
 GL_LIBS= -L../lib -lTinyGL 
 GL_INCLUDES= -I../include
-GL_DEPS= ../lib/libTinyGL.a
+#GL_DEPS= ../lib/libTinyGL.a
 
 # use Mesa
 #GL_LIBS= -lMesaGL 
@@ -84,7 +91,7 @@ GL_DEPS= ../lib/libTinyGL.a
 # Compile and link control
 
 # UNIX systems
-DIRS= src
+DIRS= src examples
 
 # BeOS
 # DIRS= src BeOS
