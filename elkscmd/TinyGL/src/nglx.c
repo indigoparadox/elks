@@ -1,7 +1,7 @@
 /* simple glx like driver for TinyGL and Nano X */
 #include <GL/gl.h>
 #include <GL/nglx.h>
-#include <microwin/nano-X.h>
+#include <nano-X.h>
 #include "zgl.h"
 
 typedef struct {
@@ -91,7 +91,7 @@ int nglXMakeCurrent( NGLXDrawable drawable,
           exit(1);
       }
 
-      ctx->pixtype = MWPF_TRUECOLOR565;
+      ctx->pixtype = PF_TRUECOLOR565;
 
       /* create a gc */
       ctx->gc = GrNewGC();
@@ -122,7 +122,7 @@ void nglXSwapBuffers( NGLXDrawable drawable )
     ctx=(TinyNGLXContext *)gl_context->opaque;
     
     GrArea(drawable, ctx->gc, 0, 0, ctx->xsize, 
-           ctx->ysize, ctx->gl_context->zb->pbuf, ctx->pixtype);
+           ctx->ysize, /* ctx->gl_context->zb->pbuf, */ ctx->pixtype);
 }
 
 

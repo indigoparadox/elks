@@ -1,10 +1,19 @@
 #####################################################################
 # C compiler
 
+ifeq ("$(TOPDIR)","")
+   TOPDIR=$(HOME)/Projects/elks
+endif
+
+# ELKS
+CC=ia16-elf-gcc
+CFLAGS=-fno-inline -melks-libc -mcmodel=small -mno-segment-relocation-stuff -mtune=i8086 -Wall -Os -Wno-implicit-int -Wno-parentheses  -I$(TOPDIR)/include -I$(TOPDIR)/libc/include -I$(TOPDIR)/elks/include -D__ELKS__ -DELKS_VERSION=\"0.6.0\" -I$(TOPDIR)/elkscmd/nano-X
+LFLAGS=-fno-inline -melks-libc -mcmodel=small -mno-segment-relocation-stuff -mtune=i8086 -Wall -Os 
+
 # linux
-CC= gcc
-CFLAGS= -g -Wall -O2
-LFLAGS=
+#CC= gcc
+#CFLAGS= -g -Wall -O2
+#LFLAGS=
 
 # for BeOS PPC
 #CC= mwcc
@@ -18,13 +27,13 @@ LFLAGS=
 # Select window API for TinyGL: 
 
 # standard X11 GLX like API 
-TINYGL_USE_GLX=y
+#TINYGL_USE_GLX=y
 
 # BEOS API
 #TINYGL_USE_BEOS=y
 
 # Micro Windows NanoX API
-#TINYGL_USE_NANOX=y
+TINYGL_USE_NANOX=y
 
 #####################################################################
 # X11 configuration (for the examples only)
@@ -75,7 +84,7 @@ GL_DEPS= ../lib/libTinyGL.a
 # Compile and link control
 
 # UNIX systems
-DIRS= src examples
+DIRS= src
 
 # BeOS
 # DIRS= src BeOS

@@ -1,7 +1,7 @@
 #ifndef NGLX_H
 #define NGLX_H
 
-#include <microwin/nano-X.h>
+#include <nano-X.h>
 #include <GL/gl.h>
 
 #ifdef __cplusplus
